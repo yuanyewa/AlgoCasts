@@ -8,6 +8,30 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {}
+function anagrams(stringA, stringB) {
+    stringA.split(" ").join("").toLowerCase();
+    stringB.split(" ").join("").toLowerCase();
+    let map = {};
+    for (let c of stringA) {
+        if (!map[c]) {
+            map[c] = 1;
+        } else {
+            map[c]++;
+        }
+    }
+    for (let c of stringB) {
+        console.log(c + " " + map[c]);
+        if (!map[c]) {
+            return false;
+        }
+        map[c]--;
+        if (map[c] < 0) {
+            return false;
+        }
+    }
+    console.log(map);
+    return true;
+}
 
+console.log(anagrams("A tree, a life, a bench", "A tree, a fence, a yard"));
 module.exports = anagrams;
